@@ -6,7 +6,7 @@ from tensorflow.keras.models import load_model
 from sklearn.preprocessing import LabelEncoder
 
 
-model = load_model('speech_recognition_model.h5')
+model = load_model('speech_classification_model.h5')
 
 
 def extract_features(audio_file):
