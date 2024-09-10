@@ -6,14 +6,14 @@ from tensorflow.keras.models import load_model
 from sklearn.preprocessing import LabelEncoder
 
 
-model = load_model('model.pkl')
+model = load_model('voice_classification_model.h5')
 
 
 def extract_features(audio_file):
-    y, sr = librosa.load(audio_file, sr=None)
-    mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
-    mfcc = mfcc.reshape(1, mfcc.shape[0], mfcc.shape[1], 1)
-    return mfcc
+    audio, sample_rate = librosa.load(audio_file, sr=None)
+    mfccs = librosa.feature.mfcc(y=audio, sr=sample_rate, n_mfcc=30)
+    mfccs = np.mean(mfccs.T, axis=0)
+    return mfccs
 
 
 le = LabelEncoder()
